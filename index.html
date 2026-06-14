@@ -1,261 +1,648 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ilza Crochê — Peças Artesanais com Amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<title>Ilza Crochê</title>
+    :root {
+      --pink-deep:   #C1265A;
+      --pink-mid:    #E0457B;
+      --pink-light:  #F9D0E2;
+      --pink-blush:  #FDF0F5;
+      --cream:       #FEFAF8;
+      --ink:         #1C1014;
+      --ink-muted:   #5C3D4A;
+      --white:       #FFFFFF;
+      --radius:      14px;
+      --radius-sm:   8px;
+      --shadow:      0 4px 24px rgba(193, 38, 90, 0.10);
+      --shadow-lg:   0 12px 48px rgba(193, 38, 90, 0.18);
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    html { scroll-behavior: smooth; }
 
-<style>
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(254, 250, 248, 0.90);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pink-light);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--pink-deep);
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--pink-deep); }
+    .nav-cta {
+      background: var(--pink-deep);
+      color: var(--white) !important;
+      padding: 9px 20px;
+      border-radius: 99px;
+      font-size: 0.85rem !important;
+      font-weight: 500 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--pink-mid) !important; transform: translateY(-1px); }
 
-body{
-background:#fff;
-color:#333;
-}
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 20%, var(--pink-light) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 80%, var(--pink-light) 0%, transparent 60%);
+      pointer-events: none;
+    }
 
-.hero{
-padding:40px 20px;
-text-align:center;
-}
+    /* Fio decorativo animado */
+    .yarn-circle {
+      width: 130px; height: 130px;
+      border: 2.5px solid var(--pink-mid);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 32px;
+      position: relative;
+      animation: spin-slow 20s linear infinite;
+    }
+    .yarn-circle::before {
+      content: '';
+      position: absolute; inset: 10px;
+      border: 1.5px dashed var(--pink-light);
+      border-radius: 50%;
+    }
+    .yarn-inner {
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, var(--pink-mid), var(--pink-deep));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: spin-slow 20s linear infinite reverse;
+    }
+    .yarn-inner svg { width: 34px; height: 34px; fill: white; }
 
-.logo{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #e05687;
-margin:auto;
-display:block;
-}
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
 
-h1{
-margin-top:20px;
-font-size:32px;
-color:#d63384;
-}
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pink-mid);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--pink-deep);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-weight: 300;
+      color: var(--ink-muted);
+      max-width: 480px;
+      line-height: 1.65;
+      margin: 0 auto 40px;
+    }
+    .hero-buttons {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--pink-deep);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 99px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--pink-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(193,38,90,0.28);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      color: var(--pink-deep);
+      border: 2px solid var(--pink-deep);
+      padding: 14px 30px;
+      border-radius: 99px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover {
+      background: var(--pink-blush);
+      transform: translateY(-2px);
+    }
+    .btn-icon { width: 18px; height: 18px; }
 
-.subtitle{
-margin-top:10px;
-font-size:15px;
-color:#666;
-max-width:400px;
-margin-left:auto;
-margin-right:auto;
-}
+    /* Prova social hero */
+    .hero-trust {
+      margin-top: 56px;
+      display: flex; align-items: center; gap: 24px; justify-content: center; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .trust-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700;
+      color: var(--pink-deep);
+      line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.75rem; font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+    .trust-divider { width: 1px; height: 40px; background: var(--pink-light); }
 
-.buttons{
-margin-top:30px;
-display:flex;
-flex-direction:column;
-gap:15px;
-max-width:400px;
-margin-left:auto;
-margin-right:auto;
-}
+    /* ── SEÇÃO SOBRE ── */
+    .section { padding: 100px 24px; }
+    .container { max-width: 1080px; margin: 0 auto; }
 
-.btn{
-padding:16px;
-border-radius:15px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-}
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .sobre-label {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--pink-mid);
+      display: block; margin-bottom: 16px;
+    }
+    .sobre-grid h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em; color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .sobre-grid h2 em { font-style: italic; color: var(--pink-deep); }
+    .sobre-grid p {
+      font-size: 1rem; font-weight: 300;
+      color: var(--ink-muted); line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .sobre-values {
+      display: flex; flex-direction: column; gap: 16px; margin-top: 32px;
+    }
+    .sobre-value {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .value-dot {
+      flex-shrink: 0; margin-top: 4px;
+      width: 10px; height: 10px;
+      border-radius: 50%; background: var(--pink-mid);
+    }
+    .value-text strong {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink); display: block;
+    }
+    .value-text span {
+      font-size: 0.85rem; font-weight: 300; color: var(--ink-muted);
+    }
+    /* Caixinha decorativa do lado direito */
+    .sobre-visual {
+      position: relative; display: flex; justify-content: center; align-items: center;
+    }
+    .sobre-card {
+      background: var(--white);
+      border: 1px solid var(--pink-light);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      width: 100%; max-width: 320px;
+      position: relative; z-index: 1;
+    }
+    .sobre-card::before {
+      content: '';
+      position: absolute; inset: -12px;
+      border: 1.5px dashed var(--pink-light);
+      border-radius: 30px;
+      z-index: -1;
+    }
+    .sobre-card-icon {
+      font-size: 3.5rem; display: block; margin-bottom: 20px;
+    }
+    .sobre-card-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--pink-deep); line-height: 1.5;
+    }
+    .sobre-card-sub {
+      font-size: 0.8rem; font-weight: 400;
+      color: var(--ink-muted); margin-top: 12px;
+    }
 
-.btn:hover{
-transform:translateY(-3px);
-}
+    /* ── CATÁLOGO ── */
+    .catalogo { background: var(--pink-blush); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--pink-mid);
+      display: block; margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; letter-spacing: -0.02em; color: var(--ink);
+    }
+    .section-header p {
+      font-size: 1rem; font-weight: 300;
+      color: var(--ink-muted); max-width: 460px;
+      margin: 12px auto 0; line-height: 1.65;
+    }
 
-.whatsapp{
-background:#25D366;
-color:white;
-}
+    .catalogo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .produto-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .produto-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .produto-img {
+      width: 100%; aspect-ratio: 1;
+      background: var(--pink-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      overflow: hidden;
+    }
+    .produto-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .produto-info { padding: 20px; }
+    .produto-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--pink-mid);
+      background: var(--pink-light);
+      padding: 3px 10px; border-radius: 99px; margin-bottom: 8px;
+    }
+    .produto-nome {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .produto-desc {
+      font-size: 0.83rem; font-weight: 300;
+      color: var(--ink-muted); line-height: 1.55;
+    }
+    .produto-footer {
+      padding: 0 20px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .produto-link {
+      font-size: 0.83rem; font-weight: 500;
+      color: var(--pink-deep); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .produto-link:hover { color: var(--pink-mid); }
 
-.instagram{
-background:#d63384;
-color:white;
-}
+    /* ── DEPOIMENTOS ── */
+    .depo-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;
+    }
+    .depo-card {
+      background: var(--white); border: 1px solid var(--pink-light);
+      border-radius: var(--radius); padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .depo-stars { color: var(--pink-deep); font-size: 1rem; margin-bottom: 16px; }
+    .depo-text {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 0.95rem; color: var(--ink); line-height: 1.65; margin-bottom: 20px;
+    }
+    .depo-author {
+      font-size: 0.82rem; font-weight: 500; color: var(--ink-muted);
+    }
 
-.catalog{
-padding:20px;
-max-width:1200px;
-margin:auto;
-}
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--pink-deep) 0%, var(--pink-mid) 100%);
+      text-align: center; padding: 100px 24px;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700; font-style: italic;
+      color: var(--white); margin-bottom: 16px; line-height: 1.15;
+    }
+    .cta-section p {
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,0.82); margin-bottom: 40px;
+    }
+    .cta-section .btn-primary {
+      background: var(--white); color: var(--pink-deep);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cta-section .btn-primary:hover { background: var(--pink-blush); }
+    .cta-section .btn-secondary {
+      border-color: rgba(255,255,255,0.5); color: var(--white);
+    }
+    .cta-section .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-.catalog h2{
-text-align:center;
-margin-bottom:30px;
-font-size:30px;
-color:#d63384;
-}
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 32px 24px;
+      font-size: 0.82rem; font-weight: 300;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
+    /* ── RESPONSIVIDADE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .sobre-grid { grid-template-columns: 1fr; gap: 48px; }
+      .sobre-visual { display: none; }
+      .hero-trust { gap: 16px; }
+    }
 
-.card{
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card img{
-width:100%;
-height:250px;
-object-fit:cover;
-}
-
-.card-content{
-padding:15px;
-}
-
-.card-content h3{
-margin-bottom:5px;
-}
-
-.card-content p{
-color:#777;
-font-size:14px;
-}
-
-.cta{
-padding:50px 20px;
-text-align:center;
-}
-
-.cta a{
-display:inline-block;
-background:#d63384;
-color:white;
-padding:18px 35px;
-border-radius:50px;
-text-decoration:none;
-font-weight:600;
-font-size:18px;
-}
-
-.floating{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-width:65px;
-height:65px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:30px;
-text-decoration:none;
-color:white;
-box-shadow:0 5px 20px rgba(0,0,0,.25);
-}
-
-</style>
+    /* Redução de movimento */
+    @media (prefers-reduced-motion: reduce) {
+      .yarn-circle, .yarn-inner { animation: none; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
 </head>
 <body>
 
-<section class="hero">
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Ilza Crochê</span>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li>
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+gostaria+de+fazer+um+pedido!"
+           target="_blank" class="nav-cta">Fazer Pedido</a>
+      </li>
+    </ul>
+  </nav>
 
-<img src="logo.png" class="logo" alt="Logo">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="yarn-circle">
+      <div class="yarn-inner">
+        <!-- ícone de novelo de lã em SVG -->
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zM8.08 26A16.04 16.04 0 018 24c0-5.47 2.743-10.29 6.92-13.22C16.53 14.13 17 18.5 17 24c0 2.15-.1 4.23-.28 6.17A16.04 16.04 0 018.08 26zm15.92 14a15.97 15.97 0 01-7.58-1.9c.32-2.45.58-5.1.58-8.1 0-5.6-.49-10.4-2.34-14.18A15.94 15.94 0 0124 8c1.98 0 3.88.36 5.64 1.01C27.79 13.6 27 19.1 27 24c0 4.83.73 9.61 2.47 13.65A15.97 15.97 0 0124 40zm4.94-2.08C27.22 34.24 31 29.32 31 24c0-4.84.76-9.78 2.45-14.02A15.96 15.96 0 0140 24c0 7.84-5.63 14.34-13.06 15.92z"/>
+        </svg>
+      </div>
+    </div>
 
-<h1>Ilza Crochê</h1>
+    <p class="hero-eyebrow">Artesanato com propósito</p>
+    <h1>Feito à mão,<br />entregue com <em>amor</em></h1>
+    <p class="hero-sub">Peças únicas de crochê que transformam ambientes e se tornam presentes inesquecíveis para quem você mais ama.</p>
 
-<p class="subtitle">
-Peças artesanais feitas com amor, carinho e qualidade para transformar ambientes e presentear quem você ama.
-</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+gostaria+de+fazer+um+pedido!"
+         target="_blank" class="btn-primary">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.527 5.856L0 24l6.336-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-4.986-1.361l-.357-.213-3.764.894.946-3.668-.232-.372A9.798 9.798 0 012.182 12c0-5.417 4.401-9.818 9.818-9.818 5.418 0 9.819 4.401 9.819 9.818 0 5.418-4.401 9.818-9.819 9.818z"/>
+        </svg>
+        Fazer Pedido
+      </a>
+      <a href="https://www.instagram.com/ilzacroche_" target="_blank" class="btn-secondary">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Ver no Instagram
+      </a>
+    </div>
 
-<div class="buttons">
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">500+</span>
+        <span class="trust-label">Peças criadas</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span class="trust-num">300+</span>
+        <span class="trust-label">Clientes felizes</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span class="trust-num">100%</span>
+        <span class="trust-label">Feito à mão</span>
+      </div>
+    </div>
+  </section>
 
-<a class="btn whatsapp"
-href="https://wa.me/5577988650001"
-target="_blank">
-📲 Fazer Pedido
-</a>
+  <!-- SOBRE -->
+  <section class="section" id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div>
+          <span class="sobre-label">Quem somos</span>
+          <h2>Arte que nasce das <em>mãos</em>, chega ao coração</h2>
+          <p>Há anos transformando fios em memórias afetivas, a Ilza Crochê nasceu da paixão pelo artesanato e do desejo de criar peças que sejam únicas — assim como as pessoas que as recebem.</p>
+          <p>Cada nó é dado com intenção. Cada peça carrega a energia de quem a fez com amor e a cuidado de quem vai recebê-la.</p>
+          <div class="sobre-values">
+            <div class="sobre-value">
+              <span class="value-dot"></span>
+              <div class="value-text">
+                <strong>Peças sob encomenda</strong>
+                <span>Personalizamos tamanho, cor e modelo para você</span>
+              </div>
+            </div>
+            <div class="sobre-value">
+              <span class="value-dot"></span>
+              <div class="value-text">
+                <strong>Qualidade artesanal</strong>
+                <span>Fios selecionados e acabamento impecável em cada peça</span>
+              </div>
+            </div>
+            <div class="sobre-value">
+              <span class="value-dot"></span>
+              <div class="value-text">
+                <strong>Entrega com carinho</strong>
+                <span>Embalagem especial para presentear com estilo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sobre-visual">
+          <div class="sobre-card">
+            <span class="sobre-card-icon">🧶</span>
+            <p class="sobre-card-text">"Cada peça conta uma história de paciência e amor."</p>
+            <p class="sobre-card-sub">— Ilza, artesã</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<a class="btn instagram"
-href="https://instagram.com/ilzacroche"
-target="_blank">
-📸 Instagram
-</a>
+  <!-- CATÁLOGO -->
+  <section class="section catalogo" id="catalogo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nossas Peças</span>
+        <h2>Catálogo</h2>
+        <p>Cada item é único. Para encomendas personalizadas, fale conosco pelo WhatsApp.</p>
+      </div>
 
-</div>
+      <div class="catalogo-grid">
+        <div class="produto-card">
+          <div class="produto-img">🌸</div>
+          <div class="produto-info">
+            <span class="produto-tag">Decoração</span>
+            <p class="produto-nome">Tapete de Crochê</p>
+            <p class="produto-desc">Tapetes redondos e retangulares em diversas cores. Ideal para sala, quarto e cozinha.</p>
+          </div>
+          <div class="produto-footer">
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+no+tapete!" target="_blank" class="produto-link">Solicitar orçamento →</a>
+          </div>
+        </div>
 
-</section>
+        <div class="produto-card">
+          <div class="produto-img">🌿</div>
+          <div class="produto-info">
+            <span class="produto-tag">Utensílio</span>
+            <p class="produto-nome">Porta-Copos & Bandeja</p>
+            <p class="produto-desc">Conjuntos de porta-copos artesanais que adicionam charme à sua mesa.</p>
+          </div>
+          <div class="produto-footer">
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+nos+porta-copos!" target="_blank" class="produto-link">Solicitar orçamento →</a>
+          </div>
+        </div>
 
-<section class="catalog">
+        <div class="produto-card">
+          <div class="produto-img">🎁</div>
+          <div class="produto-info">
+            <span class="produto-tag">Presente</span>
+            <p class="produto-nome">Kits para Presentes</p>
+            <p class="produto-desc">Cestas personalizadas com peças de crochê, perfeitas para datas especiais.</p>
+          </div>
+          <div class="produto-footer">
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+gostaria+de+um+kit+presente!" target="_blank" class="produto-link">Solicitar orçamento →</a>
+          </div>
+        </div>
 
-<h2>Catálogo</h2>
+        <div class="produto-card">
+          <div class="produto-img">👜</div>
+          <div class="produto-info">
+            <span class="produto-tag">Acessório</span>
+            <p class="produto-nome">Bolsas & Nécessaires</p>
+            <p class="produto-desc">Bolsinhas artesanais modernas que combinam utilidade e beleza.</p>
+          </div>
+          <div class="produto-footer">
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+nas+bolsas!" target="_blank" class="produto-link">Solicitar orçamento →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="grid">
+  <!-- DEPOIMENTOS -->
+  <section class="section" id="depoimentos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">O que dizem</span>
+        <h2>Clientes que amam</h2>
+      </div>
+      <div class="depo-grid">
+        <div class="depo-card">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-text">"Encomendei um tapete personalizado e ficou ainda mais lindo do que eu imaginava. Cuidado e qualidade em cada detalhe."</p>
+          <p class="depo-author">Ana Paula M. · São Paulo</p>
+        </div>
+        <div class="depo-card">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-text">"O kit de presentes foi um sucesso. Minha amiga ficou emocionada com o mimo artesanal. Com certeza voltarei a comprar!"</p>
+          <p class="depo-author">Fernanda O. · Rio de Janeiro</p>
+        </div>
+        <div class="depo-card">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-text">"Atendimento incrível, entrega rápida e a peça chegou embalada com tanto carinho. Recomendo de olhos fechados."</p>
+          <p class="depo-author">Rafaela C. · Belo Horizonte</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<img src="imagens/produto1.jpg">
-<div class="card-content">
-<h3>Tapete Redondo</h3>
-<p>Feito sob encomenda.</p>
-</div>
-</div>
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Pronta para criar<br />a sua peça?</h2>
+      <p>Fale comigo pelo WhatsApp e tire seu sonho do papel — ou do fio.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1+Ilza%2C+gostaria+de+fazer+um+pedido!"
+           target="_blank" class="btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.527 5.856L0 24l6.336-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-4.986-1.361l-.357-.213-3.764.894.946-3.668-.232-.372A9.798 9.798 0 012.182 12c0-5.417 4.401-9.818 9.818-9.818 5.418 0 9.819 4.401 9.819 9.818 0 5.418-4.401 9.818-9.819 9.818z"/>
+          </svg>
+          Fazer Pedido
+        </a>
+        <a href="https://www.instagram.com/ilzacroche_" target="_blank" class="btn-secondary">
+          Ver Portfólio no Instagram
+        </a>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<img src="imagens/produto2.jpg">
-<div class="card-content">
-<h3>Bolsa Crochê</h3>
-<p>Modelos exclusivos.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="imagens/produto3.jpg">
-<div class="card-content">
-<h3>Centro de Mesa</h3>
-<p>Peças decorativas.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="imagens/produto4.jpg">
-<div class="card-content">
-<h3>Peças Personalizadas</h3>
-<p>Produção sob medida.</p>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<section class="cta">
-
-<a href="https://wa.me/5577988650001?text=Olá! Gostaria de solicitar um orçamento."
-target="_blank">
-Solicitar Orçamento
-</a>
-
-</section>
-
-<a
-class="floating"
-href="https://wa.me/5577988650001"
-target="_blank">
-💬
-</a>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <strong>Ilza Crochê</strong> · Feito com 🧶 e muito amor · <a href="https://www.instagram.com/ilzacroche_" target="_blank" style="color:var(--pink-mid);text-decoration:none;">@ilzacroche_</a></p>
+  </footer>
 
 </body>
 </html>
